@@ -1,9 +1,56 @@
 {% extends "library/index.html" %}
 
 {% block main %}
+<a href="create">
+    <button>
+        <span style="color: white; background-color: darkgray; padding: 10px;
+        border-radius: 10px;">Create</span>
+    </button>
+</a>
+{% if not user.is_authenticated %}
+    <a href="{% url "user_create" %}">
+        <button>
+            <span style="color: white; background-color: darkgray; padding: 10px;
+            border-radius: 10px;">Sign Up</span>
+        </button>
+    </a>
+{% endif %}
 
-<p>
-    hello world!
-</p>
+{% if database.count == 1 %}
+    {% for data in database %}
+        <div style="background-color: rgb(107, 109, 123); margin: 20px; border-radius: 15px; padding: 20px; color: white;">
+            <p>
+                id: {{ data.id }}
+            </p>
+            <p>
+                name: {{ data.name }}
+            </p>
+            <p>
+                description: {{ data.description }}
+            </p>
+            <a href="{% url 'delete' data.id %}">
+                <button>
+                    <span style="color: white; background-color: darkgray; padding: 10px;
+                    border-radius: 10px;">Delete</span>
+                </button>
+            </a>
+            <a href="{% url 'update' data.id %}">
+                <button>
+                    <span style="color: white; background-color: darkgray; padding: 10px;
+                    border-radius: 10px;">Edit</span>
+                </button>
+            </a>
+        </div>
+
+    {% endfor %}
+{% else %}
+    <p>
+        {{ database.name }}
+    </p>
+    <p>
+        {{ database.description }}
+    </p>
+    <hr>
+{% endif %}
 
 {% endblock main %}

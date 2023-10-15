@@ -1,0 +1,10 @@
+{% extends "library/index.html" %}
+
+{% block main %}
+
+<form action="delete" method="post">
+    {% csrf_token %}
+    <button type="submit"> delete </button>
+</form>
+
+{% endblock main %}

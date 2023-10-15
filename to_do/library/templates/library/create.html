@@ -1,0 +1,15 @@
+{% extends "library/index.html" %}
+
+{% block main %}
+
+{% csrf_token %}
+<form action="create" method="post">
+    {% csrf_token %}
+
+    {{ database.as_p }}
+
+    <button type="submit"> please submit </button>
+    {% csrf_token %}
+</form>
+
+{% endblock main %}

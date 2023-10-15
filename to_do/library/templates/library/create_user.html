@@ -1,0 +1,26 @@
+{% extends "library/index.html" %}
+
+{% block main %}
+
+<form action="create_user" method="post">
+    {% csrf_token %}
+    <div style="color: white; background-color: rgb(163, 163, 206); padding: 20px; margin: 20px; font-family: Arial, Helvetica, sans-serif; border-radius: 20px;">
+        {{ form.as_p }}
+    </div>
+    <div style="color: white; background-color: rgb(78, 78, 78); padding: 20px; margin: 20px; font-family: Arial, Helvetica, sans-serif; border-radius: 20px;">
+        <div style="background-color: rgb(210, 210, 210); color: rgb(55, 45, 45); border-radius: 20px; padding: 20px; margin: 20px;">
+            <p>
+                {% if form.errors or form.non_field_errors %}
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+    
+                    {{ form.non_field_errors }}
+                {% endif %}
+            </p>
+        </div>
+        <button type="submit">Confirm</button>
+    </div>
+</form>
+
+{% endblock main %}
